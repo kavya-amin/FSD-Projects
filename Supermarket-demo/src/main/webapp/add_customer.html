@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- Default form login -->
+<form class="text-center border border-light p-5" action="add_customer.do" method="post">
+
+    <p class="h4 mb-4">Input Customer Details.</p>
+
+    
+    <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="id" name="id">
+
+    
+    <input type="text" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Customer Name" name="customer_name">
+
+ <select class="browser-default custom-select" name="customer_type">
+  <option value="Unknown">Select A Type</option>
+  <option value="Corporate">Corporate Customer</option>
+  <option value="Regular">Regular Customer</option>
+</select>
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit">Add A New Customer</button>
+
+
+</form>
+
+</body>
+</html>
