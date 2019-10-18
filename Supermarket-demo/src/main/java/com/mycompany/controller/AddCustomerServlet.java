@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mycomapny.dao.CustomerDao;
+import com.mycomapny.dao.CustomerDaoImpl;
 import com.mycompany.model.Customer;
 
 public class AddCustomerServlet extends HttpServlet {
@@ -18,6 +20,8 @@ public class AddCustomerServlet extends HttpServlet {
 	private String Customer_name;
 	private String Customer_type;
 	private List<String> errors;
+	private CustomerDao dao = null;
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -60,8 +64,11 @@ public class AddCustomerServlet extends HttpServlet {
 		}
 		else
 		{
-			request.setAttribute("SUCCESS", new Customer(id,Customer_name,Customer_type));
-			RequestDispatcher view=request.getRequestDispatcher("success.view");
+			Customer l = new Customer(id, Customer_name, Customer_type);
+			request.setAttribute("SUCCESS", l);
+			dao = new CustomerDaoImpl();
+			dao.createCustomer(l);
+			RequestDispatcher view = request.getRequestDispatcher("success.view");
 			view.forward(request, response);
 		}
 

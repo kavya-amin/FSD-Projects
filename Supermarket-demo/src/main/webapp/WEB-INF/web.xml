@@ -33,6 +33,10 @@
   	<display-name>AddLeagueViewServlet</display-name>
   	<description></description>
   	<servlet-class>com.mycomapny.view.AddCustomerServlet</servlet-class>
+  	<init-param>
+		<param-name>customer-list</param-name>
+		<param-value>Unknown, Corporate, Regular </param-value>
+		</init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>ListCustomerServlet</servlet-name>
