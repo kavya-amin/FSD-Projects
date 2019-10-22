@@ -10,11 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mycomapny.dao.CustomerDao;
+import com.mycomapny.dao.CustomerDaoImpl;
+import com.mycompany.model.Customer;
+
 public class AddCustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<String> l = null;
 	private String customers = null;
 	private String[] custArr;
+	private CustomerDao dao=null;
+	private List<Customer> list = null;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -70,6 +76,18 @@ public class AddCustomerServlet extends HttpServlet {
 		out.println("    <!-- Sign in button -->\r\n"
 				+ "    <button class=\"btn btn-info btn-block my-4\" type=\"submit\">Add A New Customer</button>\r\n"
 				+ "\r\n" + "\r\n" + "</form>\r\n" + "\r\n" + "</body>\r\n" + "</html>");
+		
+		dao = new  CustomerDaoImpl();
+		list = dao.getAllCustomer();
+	out.println("<div class='container'><table border class='table'><tr><td>Id</td><td>Customer Name</td><td>Customer Type</td></tr>");
+		
+		for(Customer l:list)
+		{
+			out.println("<tr><td>"+l.getId()+"</td><td>"+l.getCustomer_name()+"</td><td>"+l.getCustomer_type()+"</td></tr>");
+		}
+		out.println("</div></table><a href='index.html'>Go To Home Page</a></body></html>");
+		
+		out.println("\n" + "</body>\n" + "</html>");
 
 	}
 

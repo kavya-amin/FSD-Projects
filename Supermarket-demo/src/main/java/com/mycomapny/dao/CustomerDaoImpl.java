@@ -1,5 +1,7 @@
 package com.mycomapny.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -25,6 +27,21 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Customer> getAllCustomer() {
+		// TODO Auto-generated method stub
+	List<Customer> list=null;
+		try {
+			session=factory.openSession();
+			session.getTransaction().begin();
+			list=session.createQuery("from Customer").getResultList();
+		} finally {
+			session.close();
+		}
+		
+		return list;
 	}
 
 }

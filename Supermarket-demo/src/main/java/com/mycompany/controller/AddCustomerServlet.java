@@ -68,7 +68,7 @@ public class AddCustomerServlet extends HttpServlet {
 			request.setAttribute("SUCCESS", l);
 			dao = new CustomerDaoImpl();
 			dao.createCustomer(l);
-			RequestDispatcher view = request.getRequestDispatcher("success.view");
+			RequestDispatcher view = request.getRequestDispatcher("add_customer.view");
 			view.forward(request, response);
 		}
 
