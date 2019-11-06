@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import com.mycompany.spring_jdbc_demo.model.Customer;
 
@@ -16,9 +19,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Setter
+/**@Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor**/
+@Component(value="customerDao")
 public class CustomerDAOImpl implements CustomerDAO {
 
 /**
@@ -51,6 +55,7 @@ private DataSource dataSource=null;
 	}
 
 **/
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
@@ -71,6 +76,12 @@ private DataSource dataSource=null;
 		// TODO Auto-generated method stub
 		jdbcTemplate.update("update customer set first_name=?, last_name=?, email=? where id=?", 
 				"Kavya","Amin" , "kavya@gmail.com", id);
+	}
+
+	@Override
+	public List<Customer> getAllcustomer() {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.query("select first_name,last_name, email from customer", new CustomerMapper());
 	}
 
 	//public CustomerDAOImpl(DataSource dataSource) {
